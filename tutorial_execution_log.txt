@@ -1,34 +1,61 @@
-Manim Tutorial Execution Log - Fri Jul 25 10:26:20 IST 2025
+Manim Tutorial Execution Log - Fri Jul 25 10:27:45 IST 2025
 Manim Tutorial Execution Script
 ==============================
-=== INTERMEDIATE TUTORIALS ===
-=== Running Intermediate: CoordinateSystems from manim_tutorials/intermediate/01_coordinate_systems.py ===
-Command: manim -pql manim_tutorials/intermediate/01_coordinate_systems.py CoordinateSystems
-SUCCESS: Rendered CoordinateSystems from manim_tutorials/intermediate/01_coordinate_systems.py
+=== PROJECT TUTORIALS ===
+=== Running Projects/Mathematical Visualization: PythagoreanTheorem from manim_tutorials/projects/01_mathematical_visualization/pythagorean_theorem.py ===
+Command: manim -pql manim_tutorials/projects/01_mathematical_visualization/pythagorean_theorem.py PythagoreanTheorem
+SUCCESS: Rendered PythagoreanTheorem from manim_tutorials/projects/01_mathematical_visualization/pythagorean_theorem.py
 
-=== Running Intermediate: Transformations from manim_tutorials/intermediate/02_transformations.py ===
-Command: manim -pql manim_tutorials/intermediate/02_transformations.py Transformations
-SUCCESS: Rendered Transformations from manim_tutorials/intermediate/02_transformations.py
+=== Running Projects/Mathematical Visualization: PythagoreanProof from manim_tutorials/projects/01_mathematical_visualization/pythagorean_theorem.py ===
+Command: manim -pql manim_tutorials/projects/01_mathematical_visualization/pythagorean_theorem.py PythagoreanProof
+SUCCESS: Rendered PythagoreanProof from manim_tutorials/projects/01_mathematical_visualization/pythagorean_theorem.py
 
-=== Running Intermediate: Updaters from manim_tutorials/intermediate/03_updaters.py ===
-Command: manim -pql manim_tutorials/intermediate/03_updaters.py Updaters
-SUCCESS: Rendered Updaters from manim_tutorials/intermediate/03_updaters.py
+=== Running Projects/Physics Animations: ProjectileMotion from manim_tutorials/projects/02_physics_animations/projectile_motion.py ===
+Command: manim -pql manim_tutorials/projects/02_physics_animations/projectile_motion.py ProjectileMotion
+SUCCESS: Rendered ProjectileMotion from manim_tutorials/projects/02_physics_animations/projectile_motion.py
 
-=== Running Intermediate: ThreeDSceneExample from manim_tutorials/intermediate/04_3d_scenes.py ===
-Command: manim -pql manim_tutorials/intermediate/04_3d_scenes.py ThreeDSceneExample
-SUCCESS: Rendered ThreeDSceneExample from manim_tutorials/intermediate/04_3d_scenes.py
+=== Running Projects/Physics Animations: MultipleProjectiles from manim_tutorials/projects/02_physics_animations/projectile_motion.py ===
+Command: manim -pql manim_tutorials/projects/02_physics_animations/projectile_motion.py MultipleProjectiles
+SUCCESS: Rendered MultipleProjectiles from manim_tutorials/projects/02_physics_animations/projectile_motion.py
 
-=== Running Intermediate: SurfaceExample from manim_tutorials/intermediate/04_3d_scenes.py ===
-Command: manim -pql manim_tutorials/intermediate/04_3d_scenes.py SurfaceExample
-SUCCESS: Rendered SurfaceExample from manim_tutorials/intermediate/04_3d_scenes.py
+=== Running Projects/Data Visualization: BarCharts from manim_tutorials/projects/03_data_visualization/bar_charts.py ===
+Command: manim -pql manim_tutorials/projects/03_data_visualization/bar_charts.py BarCharts
+SUCCESS: Rendered BarCharts from manim_tutorials/projects/03_data_visualization/bar_charts.py
 
-=== Running Intermediate: CustomMobjects from manim_tutorials/intermediate/05_custom_mobjects.py ===
-Command: manim -pql manim_tutorials/intermediate/05_custom_mobjects.py CustomMobjects
-SUCCESS: Rendered CustomMobjects from manim_tutorials/intermediate/05_custom_mobjects.py
+=== Running Projects/Data Visualization: Histogram from manim_tutorials/projects/03_data_visualization/bar_charts.py ===
+Command: manim -pql manim_tutorials/projects/03_data_visualization/bar_charts.py Histogram
+SUCCESS: Rendered Histogram from manim_tutorials/projects/03_data_visualization/bar_charts.py
 
-=== Running Intermediate Interactive: InteractiveCoordinateSystems from manim_tutorials/intermediate/01_coordinate_systems_interactive.py ===
-Command: manim -pql manim_tutorials/intermediate/01_coordinate_systems_interactive.py InteractiveCoordinateSystems
-SUCCESS: Rendered InteractiveCoordinateSystems from manim_tutorials/intermediate/01_coordinate_systems_interactive.py
+=== Running Projects/Data Visualization: StackedBarChart from manim_tutorials/projects/03_data_visualization/bar_charts.py ===
+Command: manim -pql manim_tutorials/projects/03_data_visualization/bar_charts.py StackedBarChart
+SUCCESS: Rendered StackedBarChart from manim_tutorials/projects/03_data_visualization/bar_charts.py
 
-=== Running Intermediate Interactive: InteractiveThreeDSceneExample from manim_tutorials/intermediate/04_3d_scenes_interactive.py ===
-Command: manim -pql manim_tutorials/intermediate/04_3d_scenes_interactive.py InteractiveThreeDSceneExample
+=== Running Projects/Educational Content: AlgebraBasics from manim_tutorials/projects/04_educational_content/algebra_basics.py ===
+Command: manim -pql manim_tutorials/projects/04_educational_content/algebra_basics.py AlgebraBasics
+SUCCESS: Rendered AlgebraBasics from manim_tutorials/projects/04_educational_content/algebra_basics.py
+
+=== Running Projects/Educational Content: QuadraticEquations from manim_tutorials/projects/04_educational_content/algebra_basics.py ===
+Command: manim -pql manim_tutorials/projects/04_educational_content/algebra_basics.py QuadraticEquations
+SUCCESS: Rendered QuadraticEquations from manim_tutorials/projects/04_educational_content/algebra_basics.py
+
+=== Running Projects/Educational Content: Functions from manim_tutorials/projects/04_educational_content/algebra_basics.py ===
+Command: manim -pql manim_tutorials/projects/04_educational_content/algebra_basics.py Functions
+SUCCESS: Rendered Functions from manim_tutorials/projects/04_educational_content/algebra_basics.py
+
+=== Running Projects/Creative Art: Fractals from manim_tutorials/projects/05_creative_art/fractals.py ===
+Command: manim -pql manim_tutorials/projects/05_creative_art/fractals.py Fractals
+SUCCESS: Rendered Fractals from manim_tutorials/projects/05_creative_art/fractals.py
+
+=== Running Projects/Creative Art: MandelbrotSet from manim_tutorials/projects/05_creative_art/fractals.py ===
+Command: manim -pql manim_tutorials/projects/05_creative_art/fractals.py MandelbrotSet
+SUCCESS: Rendered MandelbrotSet from manim_tutorials/projects/05_creative_art/fractals.py
+
+=== Running Projects/Creative Art: JuliaSet from manim_tutorials/projects/05_creative_art/fractals.py ===
+Command: manim -pql manim_tutorials/projects/05_creative_art/fractals.py JuliaSet
+SUCCESS: Rendered JuliaSet from manim_tutorials/projects/05_creative_art/fractals.py
+
+=== Running Projects/Creative Art: FractalAnimations from manim_tutorials/projects/05_creative_art/fractals.py ===
+Command: manim -pql manim_tutorials/projects/05_creative_art/fractals.py FractalAnimations
+SUCCESS: Rendered FractalAnimations from manim_tutorials/projects/05_creative_art/fractals.py
+
+=== EXECUTION COMPLETE ===

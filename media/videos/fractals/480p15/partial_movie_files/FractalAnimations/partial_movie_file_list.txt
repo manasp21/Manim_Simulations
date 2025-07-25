@@ -7,5 +7,5 @@ file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos
 file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/fractals/480p15/partial_movie_files/FractalAnimations/624642324_1839128356_1336814711.mp4'
 file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/fractals/480p15/partial_movie_files/FractalAnimations/624642324_324402190_2211319205.mp4'
 file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/fractals/480p15/partial_movie_files/FractalAnimations/624642324_1839128356_2312703347.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/fractals/480p15/partial_movie_files/FractalAnimations/624642324_2498175413_2376095436.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/fractals/480p15/partial_movie_files/FractalAnimations/624642324_77484854_2376095436.mp4'
 file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/fractals/480p15/partial_movie_files/FractalAnimations/624642324_2408024828_3738244405.mp4'

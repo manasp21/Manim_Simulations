@@ -4,5 +4,5 @@ file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos
 file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_custom_animations/480p15/partial_movie_files/CustomAnimations/624642324_4021255048_1136447151.mp4'
 file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_custom_animations/480p15/partial_movie_files/CustomAnimations/624642324_2408024828_3512604349.mp4'
 file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_custom_animations/480p15/partial_movie_files/CustomAnimations/624642324_922527594_1296100643.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_custom_animations/480p15/partial_movie_files/CustomAnimations/624642324_2144149187_1296100643.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_custom_animations/480p15/partial_movie_files/CustomAnimations/624642324_2408024828_3377976309.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_custom_animations/480p15/partial_movie_files/CustomAnimations/624642324_1777627836_1296100643.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_custom_animations/480p15/partial_movie_files/CustomAnimations/624642324_2408024828_3580052051.mp4'
