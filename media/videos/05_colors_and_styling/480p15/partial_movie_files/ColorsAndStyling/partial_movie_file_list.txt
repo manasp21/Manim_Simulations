@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_colors_and_styling/480p15/partial_movie_files/ColorsAndStyling/1185818338_145414445_223132457.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_colors_and_styling/480p15/partial_movie_files/ColorsAndStyling/624642324_3897405213_4093667959.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_colors_and_styling/480p15/partial_movie_files/ColorsAndStyling/624642324_2408024828_3406143860.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_colors_and_styling/480p15/partial_movie_files/ColorsAndStyling/624642324_3431372284_1761380883.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_colors_and_styling/480p15/partial_movie_files/ColorsAndStyling/624642324_2408024828_814526130.mp4'

@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/1185818338_2800828973_223132457.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/624642324_1839128356_3396157594.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/624642324_2434210199_3521531785.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/624642324_1747166719_226307299.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/624642324_1839128356_3952304645.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/624642324_890754585_1282598906.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/624642324_1839128356_3889729554.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/624642324_867490717_2235557065.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/projectile_motion/480p15/partial_movie_files/MultipleProjectiles/624642324_2408024828_3471757345.mp4'
