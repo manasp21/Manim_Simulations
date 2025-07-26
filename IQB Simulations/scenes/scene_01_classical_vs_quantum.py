@@ -350,19 +350,22 @@ class ClassicalVsQuantumIntro(Scene):
         
         self.play(Write(section_title, run_time=1.5))
         
-        # Energy level diagram
-        energy_levels = QuantumEnergyLevels.create_energy_level_diagram(
-            energies=[0, 1, 2],
-            labels=['0', '1', '2'],
-            width=3.0,
-            height=4.0
-        ).shift(LEFT * 4)
+        # Energy level diagram - simplified version
+        level_0 = Line(start=[-5, -1.5, 0], end=[-3, -1.5, 0], color=WHITE, stroke_width=4)
+        level_1 = Line(start=[-5, 0, 0], end=[-3, 0, 0], color=WHITE, stroke_width=4)
+        level_2 = Line(start=[-5, 1.5, 0], end=[-3, 1.5, 0], color=WHITE, stroke_width=4)
+        
+        label_0 = MathTex(r'|0\rangle', font_size=32).next_to(level_0, LEFT, buff=0.3)
+        label_1 = MathTex(r'|1\rangle', font_size=32).next_to(level_1, LEFT, buff=0.3)
+        label_2 = MathTex(r'|2\rangle', font_size=32).next_to(level_2, LEFT, buff=0.3)
+        
+        energy_levels = VGroup(level_0, level_1, level_2, label_0, label_1, label_2)
         
         self.play(Create(energy_levels, run_time=3.0))
         
         # Energy eigenvalue equation
         eigenvalue_eq = MathTex(
-            QuantumBeatExpressions.CLASSICAL_BEATING['energy_eigenvalue_equation'],
+            r'\hat{H}|n\rangle = E_n|n\rangle',
             font_size=36,
             color=WHITE
         ).next_to(energy_levels, RIGHT, buff=1.5).shift(UP * 1.5)
@@ -371,7 +374,7 @@ class ClassicalVsQuantumIntro(Scene):
         
         # Quantum superposition state
         superposition_eq = MathTex(
-            QuantumBeatExpressions.CLASSICAL_BEATING['quantum_state_superposition'],
+            r'|\psi\rangle = c_1 |1\rangle + c_2 |2\rangle',
             font_size=36,
             color=WHITE
         ).next_to(eigenvalue_eq, DOWN, buff=1.0)
@@ -380,7 +383,7 @@ class ClassicalVsQuantumIntro(Scene):
         
         # Time evolution of superposition
         time_evolution_eq = MathTex(
-            QuantumBeatExpressions.CLASSICAL_BEATING['time_evolution_superposition'],
+            r'|\psi(t)\rangle = c_1 e^{-iE_1 t/\hbar}|1\rangle + c_2 e^{-iE_2 t/\hbar}|2\rangle',
             font_size=32,
             color=COHERENCE_GREEN
         ).next_to(superposition_eq, DOWN, buff=0.8)
@@ -413,15 +416,29 @@ class ClassicalVsQuantumIntro(Scene):
         )
         
         # Add transition arrows showing energy difference
-        transition_arrow = QuantumEnergyLevels.add_transition_arrow(
-            from_level=2,
-            to_level=1,
-            energy_levels=energy_levels,
-            transition_type='emission',
-            label=r'\\Delta\\omega = \\frac{E_2 - E_1}{\\hbar}'
-        )
+        # TODO: Fix QuantumEnergyLevels.add_transition_arrow - commenting out temporarily  
+        # transition_arrow = QuantumEnergyLevels.add_transition_arrow(
+        #     from_level=2,
+        #     to_level=1,
+        #     energy_levels=energy_levels,
+        #     transition_type='emission',
+        #     label=r'\\Delta\\omega = \\frac{E_2 - E_1}{\\hbar}'
+        # )
+        # 
+        # self.play(Create(transition_arrow, run_time=2.0))
         
-        self.play(Create(transition_arrow, run_time=2.0))
+        # Temporary placeholder arrow
+        simple_arrow = Arrow(
+            start=[-3.5, 0.5, 0], 
+            end=[-3.5, -0.5, 0], 
+            color=QUANTUM_GOLD,
+            stroke_width=3
+        )
+        arrow_label = MathTex(r'\Delta E = E_2 - E_1', font_size=24, color=QUANTUM_GOLD)
+        arrow_label.next_to(simple_arrow, RIGHT, buff=0.2)
+        
+        transition_group = VGroup(simple_arrow, arrow_label)
+        self.play(Create(transition_group, run_time=2.0))
         
         # Emphasize the fundamental difference
         emphasis_text = Text(
@@ -439,7 +456,7 @@ class ClassicalVsQuantumIntro(Scene):
         self.quantum_elements = VGroup(
             section_title, energy_levels, eigenvalue_eq,
             superposition_eq, time_evolution_eq,
-            beat_freq_title, beat_freq_eq, transition_arrow,
+            beat_freq_title, beat_freq_eq, transition_group,
             emphasis_text
         )
     
