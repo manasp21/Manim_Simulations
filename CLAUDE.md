@@ -126,7 +126,7 @@ from utils.widget_utils import *
 - **pandas>=1.5.0**: Data manipulation for data visualization projects
 - **scipy>=1.9.0**: Scientific computing for physics simulations
 
-**System Requirements**: Python 3.13.5+ recommended, LaTeX system mandatory.
+**System Requirements**: Python 3.8+ recommended, LaTeX system mandatory.
 
 ## Quality Settings
 

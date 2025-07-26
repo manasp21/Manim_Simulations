@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/BasicShapes/1185818338_3847549183_223132457.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/BasicShapes/624642324_3264929833_2195578004.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/BasicShapes/624642324_1179107968_3269142257.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/BasicShapes/624642324_2472776709_1707546260.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/BasicShapes/624642324_3046172025_1518441317.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/BasicShapes/624642324_3728038509_1534706107.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/BasicShapes/624642324_2408024828_1603295926.mp4'
