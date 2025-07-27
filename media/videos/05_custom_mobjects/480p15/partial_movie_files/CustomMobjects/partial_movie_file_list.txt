@@ -1,7 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_custom_mobjects/480p15/partial_movie_files/CustomMobjects/1185818338_3098025435_223132457.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_custom_mobjects/480p15/partial_movie_files/CustomMobjects/624642324_2408024828_1199738812.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_custom_mobjects/480p15/partial_movie_files/CustomMobjects/624642324_19893757_1566433913.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_custom_mobjects/480p15/partial_movie_files/CustomMobjects/624642324_2408024828_3110915870.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_custom_mobjects/480p15/partial_movie_files/CustomMobjects/624642324_611425440_2170062910.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/05_custom_mobjects/480p15/partial_movie_files/CustomMobjects/624642324_2408024828_499344455.mp4'

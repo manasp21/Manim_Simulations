@@ -21,7 +21,10 @@
       "Bash(/dev/null)",
       "Bash(mkdir:*)",
       "Bash(cp:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(git rm:*)",
+      "Bash(true)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }

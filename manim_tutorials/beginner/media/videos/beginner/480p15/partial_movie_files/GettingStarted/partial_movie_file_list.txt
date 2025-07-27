@@ -1,4 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/GettingStarted/1185818338_3120274435_223132457.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/GettingStarted/624642324_679307276_2665161775.mp4'
-file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/beginner/media/videos/beginner/480p15/partial_movie_files/GettingStarted/624642324_2408024828_1881515789.mp4'
