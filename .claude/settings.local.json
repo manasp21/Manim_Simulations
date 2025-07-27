@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(manim:*)",
+      "Bash(pip3 install:*)",
+      "Bash(jupyter nbextension:*)",
+      "Bash(brew list:*)",
+      "Bash(brew install:*)",
+      "Bash(ls:*)",
+      "Bash(export:*)",
+      "Bash(brew info:*)",
+      "Bash(find:*)",
+      "Bash(kpsewhich:*)",
+      "Bash(brew reinstall:*)",
+      "Bash(echo $PATH)",
+      "Bash(cat:*)",
+      "Bash(./manim_tutorials/run_all_tutorials.sh:*)",
+      "Bash(latex --version)",
+      "Bash(/dev/null)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)"
+    ],
+    "deny": []
+  }
+}

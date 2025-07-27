@@ -1,0 +1,125 @@
+# Manim Generated Media Files
+# ============================
+
+# All media directories (videos, images, LaTeX renders)
+media/
+*/media/
+**/media/
+
+# Specific Manim output patterns
+*.mp4
+*.mov
+*.avi
+*.gif
+*.png
+*.jpg
+*.jpeg
+
+# LaTeX compilation outputs in media directories
+media/**/*.tex
+media/**/*.svg
+media/**/*.pdf
+media/**/*.aux
+media/**/*.log
+media/**/*.fls
+media/**/*.fdb_latexmk
+
+# Manim cache and temporary files
+.manim_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Partial movie files (Manim intermediate renders)
+partial_movie_files/
+**/partial_movie_files/
+
+# Text rendering outputs
+texts/
+**/texts/
+
+# Python virtual environment
+venv/
+env/
+.env
+.venv
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+*.txt.log
+tutorial_execution_log.txt
+tutorial_execution_errors.txt
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Documentation build outputs (if using Sphinx or similar)
+docs/_build/
+docs/build/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Testing
+.pytest_cache/
+.tox/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Project-specific exclusions
+# ===========================
+
+# Keep source code, configs, and documentation
+# Include: *.py, *.md, *.txt (requirements), *.json, *.yaml
+
+# Allow tracking of specific important files
+!requirements.txt
+!README.md
+!CLAUDE.md
+!*.py
+!*.md
+!*.json
+!*.yaml
+!*.yml
+
+# IQB Simulations project - exclude all generated media
+IQB\ Simulations/media/
+"IQB Simulations"/media/
+
+# Allow tracking example media if manually added
+# !examples/sample_output.mp4
+
+# Development and testing outputs
+test_output/
+debug/
+experiments/
