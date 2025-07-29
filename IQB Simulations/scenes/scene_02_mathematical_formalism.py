@@ -171,10 +171,10 @@ class MathematicalFormalism(Scene):
         
         # Element interpretations
         population_text = Text("Diagonal: Population", font_size=24, color=WHITE)
-        population_text.next_to(matrix_visual, LEFT, buff=1.0).shift(UP * 0.5)
+        population_text.next_to(matrix_visual, LEFT, buff=1.5).shift(UP * 0.8)  # Increased buffer and spacing
         
         coherence_text = Text("Off-diagonal: Coherence", font_size=24, color=COHERENCE_GREEN)
-        coherence_text.next_to(matrix_visual, LEFT, buff=1.0).shift(DOWN * 0.5)
+        coherence_text.next_to(matrix_visual, LEFT, buff=1.5).shift(DOWN * 0.8)  # Increased buffer and spacing
         
         self.play(
             Write(population_text, run_time=1.5),
@@ -232,7 +232,7 @@ class MathematicalFormalism(Scene):
         for element_group in matrix_elements:
             element_group[1].move_to(element_group[0].get_center())
         
-        matrix_elements.arrange_in_grid(rows=2, cols=2, buff=0.2)
+        matrix_elements.arrange_in_grid(rows=2, cols=2, buff=0.4)  # Increased from 0.2 for better spacing
         
         # Simple bracket lines instead of LaTeX brackets
         left_bracket = VGroup(
@@ -277,7 +277,7 @@ class MathematicalFormalism(Scene):
             r'\frac{d\hat{\rho}}{dt} = -\frac{i}{\hbar}[\hat{H}, \hat{\rho}]',
             font_size=36,
             color=WHITE
-        ).shift(UP * 2)
+        ).shift(UP * 2.5)  # Increased from UP * 2
         
         self.play(Write(liouville_eq, run_time=self.standard_run_time))
         
@@ -286,16 +286,16 @@ class MathematicalFormalism(Scene):
             r'\frac{d\hat{\rho}}{dt} = -\frac{i}{\hbar}[\hat{H}, \hat{\rho}] + \mathcal{L}_{diss}[\hat{\rho}]',
             font_size=36,
             color=WHITE
-        ).shift(UP * 0.5)
+        ).shift(UP * 0.8)  # Increased from UP * 0.5
         
         self.play(Write(master_eq, run_time=self.standard_run_time))
         
         # Step 3: Lindblad dissipator
         lindblad_eq = MathTex(
             r'\mathcal{L}_{diss}[\hat{\rho}] = \sum_k \gamma_k \left(\hat{L}_k\hat{\rho}\hat{L}_k^\dagger - \frac{1}{2}\{\hat{L}_k^\dagger\hat{L}_k, \hat{\rho}\}\right)',
-            font_size=32,
+            font_size=30,  # Reduced from 32 for better spacing
             color=DECOHERENCE_RED
-        ).shift(DOWN * 1)
+        ).shift(DOWN * 1.5)  # Increased from DOWN * 1
         
         self.play(Write(lindblad_eq, run_time=self.slow_run_time))
         

@@ -148,12 +148,12 @@ class PhysicalMechanisms(Scene):
         
         self.play(Create(pathway_diagram, run_time=self.slow_run_time))
         
-        # Mathematical description
+        # Mathematical description - improved vertical spacing
         pathway_amplitude = MathTex(
             r'A_{total} = A_1 e^{i\phi_1} + A_2 e^{i\phi_2}',
             font_size=36,
             color=WHITE
-        ).to_edge(DOWN, buff=1.5)
+        ).to_edge(DOWN, buff=1.8)  # Increased from 1.5
         
         self.play(Write(pathway_amplitude, run_time=self.standard_run_time))
         
@@ -162,7 +162,7 @@ class PhysicalMechanisms(Scene):
             r'|A_{total}|^2 = |A_1|^2 + |A_2|^2 + 2|A_1||A_2|\cos(\phi_2 - \phi_1)',
             font_size=32,
             color=QUANTUM_GOLD
-        ).next_to(pathway_amplitude, UP, buff=0.5)
+        ).next_to(pathway_amplitude, UP, buff=0.8)  # Increased from 0.5
         
         self.play(Write(interference_intensity, run_time=self.slow_run_time))
         
@@ -219,12 +219,12 @@ class PhysicalMechanisms(Scene):
                           end=final_state.get_center(), 
                           color=DECOHERENCE_RED, stroke_width=3)
         
-        # Pathway labels
+        # Pathway labels - increased spacing for better readability
         path_1_label = MathTex(r'A_1 e^{i\phi_1}', font_size=20, color=COHERENCE_GREEN)
-        path_1_label.next_to(intermediate_1, LEFT, buff=0.5)
+        path_1_label.next_to(intermediate_1, LEFT, buff=0.8)  # Increased from 0.5
         
         path_2_label = MathTex(r'A_2 e^{i\phi_2}', font_size=20, color=DECOHERENCE_RED)
-        path_2_label.next_to(intermediate_2, LEFT, buff=0.5)
+        path_2_label.next_to(intermediate_2, LEFT, buff=0.8)  # Increased from 0.5
         
         return VGroup(
             initial_state, initial_label, final_state, final_label,
@@ -273,18 +273,18 @@ class PhysicalMechanisms(Scene):
             Write(lambda_label, run_time=1.5)
         )
         
-        # Hamiltonians
+        # Hamiltonians - improved spacing and positioning
         v_hamiltonian = MathTex(
             r'\hat{H}_V = \hbar\omega_0|0\rangle\langle 0| + \hbar\omega_1|1\rangle\langle 1| + \hbar\omega_2|2\rangle\langle 2|',
-            font_size=24,
+            font_size=22,  # Slightly reduced for better fit
             color=WHITE
-        ).next_to(v_system, DOWN, buff=1.0)
+        ).next_to(v_system, DOWN, buff=1.2)  # Increased spacing
         
         lambda_hamiltonian = MathTex(
             r'\hat{H}_\Lambda = \hbar\omega_1|1\rangle\langle 1| + \hbar\omega_2|2\rangle\langle 2| + \hbar\omega_0|0\rangle\langle 0|',
-            font_size=24,
+            font_size=22,  # Slightly reduced for better fit
             color=WHITE
-        ).next_to(lambda_system, DOWN, buff=1.0)
+        ).next_to(lambda_system, DOWN, buff=1.2)  # Increased spacing
         
         self.play(
             Write(v_hamiltonian, run_time=self.slow_run_time),
@@ -302,15 +302,15 @@ class PhysicalMechanisms(Scene):
     def create_v_system(self):
         """Create V-system energy level diagram."""
         
-        # Energy levels
+        # Energy levels - improved alignment and spacing
         level_0 = Line(start=[-1, -1.5, 0], end=[1, -1.5, 0], color=WHITE, stroke_width=4)
         level_1 = Line(start=[-1, 0.5, 0], end=[1, 0.5, 0], color=WHITE, stroke_width=4)
         level_2 = Line(start=[-1, 1.5, 0], end=[1, 1.5, 0], color=WHITE, stroke_width=4)
         
-        # Labels
-        label_0 = MathTex(r'|0\rangle', font_size=28).next_to(level_0, LEFT)
-        label_1 = MathTex(r'|1\rangle', font_size=28).next_to(level_1, LEFT)
-        label_2 = MathTex(r'|2\rangle', font_size=28).next_to(level_2, LEFT)
+        # Labels - increased spacing for better alignment
+        label_0 = MathTex(r'|0\rangle', font_size=28).next_to(level_0, LEFT, buff=0.4)  # Added explicit spacing
+        label_1 = MathTex(r'|1\rangle', font_size=28).next_to(level_1, LEFT, buff=0.4)  # Added explicit spacing
+        label_2 = MathTex(r'|2\rangle', font_size=28).next_to(level_2, LEFT, buff=0.4)  # Added explicit spacing
         
         # Transitions (V-shape)
         trans_01 = Arrow(start=[0.5, -1.3, 0], end=[0.5, 0.3, 0], 
@@ -324,15 +324,15 @@ class PhysicalMechanisms(Scene):
     def create_lambda_system(self):
         """Create Λ-system energy level diagram."""
         
-        # Energy levels  
+        # Energy levels - improved alignment and spacing
         level_0 = Line(start=[-1, 0, 0], end=[1, 0, 0], color=WHITE, stroke_width=4)
         level_1 = Line(start=[-1, -1.5, 0], end=[1, -1.5, 0], color=WHITE, stroke_width=4)
         level_2 = Line(start=[-1, 1.5, 0], end=[1, 1.5, 0], color=WHITE, stroke_width=4)
         
-        # Labels
-        label_0 = MathTex(r'|0\rangle', font_size=28).next_to(level_0, LEFT)
-        label_1 = MathTex(r'|1\rangle', font_size=28).next_to(level_1, LEFT)
-        label_2 = MathTex(r'|2\rangle', font_size=28).next_to(level_2, LEFT)
+        # Labels - increased spacing for better alignment
+        label_0 = MathTex(r'|0\rangle', font_size=28).next_to(level_0, LEFT, buff=0.4)  # Added explicit spacing
+        label_1 = MathTex(r'|1\rangle', font_size=28).next_to(level_1, LEFT, buff=0.4)  # Added explicit spacing
+        label_2 = MathTex(r'|2\rangle', font_size=28).next_to(level_2, LEFT, buff=0.4)  # Added explicit spacing
         
         # Transitions (Λ-shape)
         trans_10 = Arrow(start=[0.5, -1.3, 0], end=[0.5, -0.2, 0], 

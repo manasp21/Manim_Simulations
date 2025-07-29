@@ -384,9 +384,9 @@ class ClassicalVsQuantumIntro(Scene):
         # Time evolution of superposition
         time_evolution_eq = MathTex(
             r'|\psi(t)\rangle = c_1 e^{-iE_1 t/\hbar}|1\rangle + c_2 e^{-iE_2 t/\hbar}|2\rangle',
-            font_size=32,
+            font_size=28,  # Reduced from 32 for better spacing
             color=COHERENCE_GREEN
-        ).next_to(superposition_eq, DOWN, buff=0.8)
+        ).next_to(superposition_eq, DOWN, buff=1.2).shift(LEFT * 0.3)  # Increased spacing and added horizontal adjustment
         
         self.play(Write(time_evolution_eq, run_time=3.0))
         
@@ -402,13 +402,13 @@ class ClassicalVsQuantumIntro(Scene):
             "Quantum Beat Frequency",
             font_size=32,
             color=WHITE
-        ).next_to(time_evolution_eq, DOWN, buff=1.0)
+        ).next_to(time_evolution_eq, DOWN, buff=1.5)  # Increased spacing
         
         beat_freq_eq = MathTex(
             r'\Delta\omega = \frac{E_2 - E_1}{\hbar}',
             font_size=40,
             color=QUANTUM_GOLD
-        ).next_to(beat_freq_title, DOWN, buff=0.5)
+        ).next_to(beat_freq_title, DOWN, buff=0.8)  # Increased spacing
         
         self.play(
             Write(beat_freq_title, run_time=1.5),

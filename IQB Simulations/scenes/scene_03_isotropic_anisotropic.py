@@ -207,10 +207,10 @@ class IsotropicAnisotropic(Scene):
         y_axis = Arrow3D(start=ORIGIN, end=[0, 2, 0], color=GREEN)  
         z_axis = Arrow3D(start=ORIGIN, end=[0, 0, 2], color=BLUE)
         
-        # Axis labels
-        x_label = Text("x", font_size=24, color=RED).next_to([2, 0, 0], RIGHT)
-        y_label = Text("y", font_size=24, color=GREEN).next_to([0, 2, 0], UP) 
-        z_label = Text("z", font_size=24, color=BLUE).next_to([0, 0, 2], OUT)
+        # Axis labels - positioned safely for 3D viewing
+        x_label = Text("x", font_size=24, color=RED).move_to([2.5, 0, 0])
+        y_label = Text("y", font_size=24, color=GREEN).move_to([0, 2.5, 0]) 
+        z_label = Text("z", font_size=24, color=BLUE).move_to([0, 0, 2.5])  # Fixed ground plane violation
         
         # Directional arrows on sphere
         directions = [
