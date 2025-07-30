@@ -506,6 +506,154 @@ class AnimatedColorCycler:
         """Reset the color cycle to start at specified time."""
         self.start_time = start_time
 
+class SelfSimilarityColorizer:
+    """
+    Specialized colorizer optimized for highlighting self-similar fractal structures.
+    
+    Combines distance estimation with edge enhancement techniques to make
+    self-similar patterns highly visible and distinguishable.
+    """
+    
+    def __init__(self, base_palette: Union[ColorPalette, str] = ColorPalette.ELECTRIC,
+                 edge_emphasis: float = 2.0, structure_contrast: float = 1.5):
+        """
+        Initialize self-similarity colorizer.
+        
+        Parameters
+        ----------
+        base_palette : ColorPalette or str
+            Base color palette for fractal coloring
+        edge_emphasis : float
+            Multiplier for edge enhancement (higher = stronger edges)
+        structure_contrast : float
+            Contrast multiplier for self-similar structures
+        """
+        self.base_colorizer = FractalColorizer(base_palette, gamma=0.8, contrast=1.2)
+        self.edge_emphasis = edge_emphasis
+        self.structure_contrast = structure_contrast
+    
+    def colorize_with_distance_estimation(self, escape_data: np.ndarray, 
+                                        distance_data: np.ndarray,
+                                        max_iterations: int = 256,
+                                        zoom_level: float = 1.0) -> np.ndarray:
+        """
+        Create enhanced coloring using both escape data and distance estimation.
+        
+        Parameters
+        ----------
+        escape_data : np.ndarray
+            Standard escape-time fractal data
+        distance_data : np.ndarray
+            Distance estimation data for boundary enhancement
+        max_iterations : int
+            Maximum iterations used in fractal calculation
+        zoom_level : float
+            Current zoom level (affects edge sensitivity)
+            
+        Returns
+        -------
+        np.ndarray
+            RGB array with enhanced self-similarity visualization
+        """
+        print(f"🎨 Applying self-similarity coloring (zoom {zoom_level:,.0f}x)")
+        
+        # Start with base coloring
+        rgb_base = self.base_colorizer.colorize_escape_data(
+            escape_data, max_iterations=max_iterations,
+            use_histogram_equalization=True
+        )
+        
+        # Enhance edges using distance estimation
+        edge_enhanced_rgb = self._apply_edge_enhancement(
+            rgb_base, distance_data, zoom_level
+        )
+        
+        # Apply self-similarity structure enhancement
+        structure_enhanced_rgb = self._enhance_self_similar_structures(
+            edge_enhanced_rgb, escape_data, distance_data
+        )
+        
+        # Apply adaptive contrast based on zoom level
+        final_rgb = self._apply_adaptive_contrast(
+            structure_enhanced_rgb, zoom_level
+        )
+        
+        return np.clip(final_rgb, 0, 1)
+    
+    def _apply_edge_enhancement(self, rgb_array: np.ndarray, 
+                              distance_data: np.ndarray, zoom_level: float) -> np.ndarray:
+        """Apply edge enhancement using distance estimation data."""
+        
+        # Normalize distance data for edge detection
+        distance_normalized = distance_data.copy()
+        max_distance = np.max(distance_data)
+        if max_distance > 0:
+            distance_normalized = distance_data / max_distance
+        
+        # Create edge mask (areas with small distance values are near boundaries)
+        distance_threshold = max(0.001, 0.01 / np.sqrt(zoom_level))  # Adaptive threshold
+        edge_mask = (distance_normalized > 0) & (distance_normalized < distance_threshold)
+        
+        # Create edge enhancement factor
+        edge_factor = np.ones_like(distance_normalized)
+        edge_factor[edge_mask] = 1.0 + self.edge_emphasis
+        
+        # Apply edge enhancement to RGB channels
+        enhanced_rgb = rgb_array.copy()
+        for channel in range(3):
+            enhanced_rgb[:, :, channel] *= edge_factor
+        
+        print(f"   🔍 Enhanced {np.sum(edge_mask)} edge pixels")
+        return enhanced_rgb
+    
+    def _enhance_self_similar_structures(self, rgb_array: np.ndarray,
+                                       escape_data: np.ndarray,
+                                       distance_data: np.ndarray) -> np.ndarray:
+        """Enhance areas likely to contain self-similar structures."""
+        
+        # Identify regions with interesting escape patterns
+        # These often correspond to self-similar structures
+        escape_gradient = np.gradient(escape_data)
+        gradient_magnitude = np.sqrt(escape_gradient[0]**2 + escape_gradient[1]**2)
+        
+        # Areas with moderate gradient are often self-similar regions
+        gradient_normalized = gradient_magnitude / (np.max(gradient_magnitude) + 1e-8)
+        structure_mask = (gradient_normalized > 0.1) & (gradient_normalized < 0.8)
+        
+        # Apply structure enhancement
+        enhanced_rgb = rgb_array.copy()
+        structure_factor = 1.0 + (self.structure_contrast - 1.0) * structure_mask
+        
+        for channel in range(3):
+            enhanced_rgb[:, :, channel] *= structure_factor
+        
+        print(f"   🔄 Enhanced {np.sum(structure_mask)} structure pixels")
+        return enhanced_rgb
+    
+    def _apply_adaptive_contrast(self, rgb_array: np.ndarray, zoom_level: float) -> np.ndarray:
+        """Apply adaptive contrast enhancement based on zoom level."""
+        
+        # Higher zoom levels need more contrast to see fine details
+        contrast_boost = 1.0 + min(0.5, np.log10(zoom_level) * 0.1)
+        
+        # Apply contrast enhancement
+        enhanced_rgb = (rgb_array - 0.5) * contrast_boost + 0.5
+        
+        print(f"   ⚡ Applied contrast boost: {contrast_boost:.2f}x")
+        return enhanced_rgb
+    
+    def create_self_similarity_palette(self, width: int = 512, height: int = 64) -> np.ndarray:
+        """Create a preview of the self-similarity optimized color palette."""
+        gradient = np.linspace(0, 1, width)
+        gradient_2d = np.tile(gradient, (height, 1))
+        
+        # Create fake distance data for preview
+        distance_2d = np.abs(gradient_2d - 0.5) * 2  # Peak at edges
+        
+        return self.colorize_with_distance_estimation(
+            gradient_2d, distance_2d, max_iterations=256, zoom_level=1000
+        )
+
 # Utility functions for color analysis and optimization
 def analyze_color_distribution(rgb_array: np.ndarray) -> Dict[str, float]:
     """

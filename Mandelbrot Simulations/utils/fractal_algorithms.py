@@ -13,7 +13,7 @@ Key features:
 """
 
 import numpy as np
-from typing import Tuple, Union, Callable, Dict, Any
+from typing import Tuple, Union, Callable, Dict, Any, List, Optional
 
 # Try to import numba for performance, fall back to regular numpy if not available
 try:
@@ -89,6 +89,44 @@ class FractalCalculator:
         
         # Calculate escape times using optimized algorithm
         return self._mandelbrot_escape_count(C)
+    
+    def mandelbrot_set_with_distance_estimation(self, width: int, height: int,
+                                              center: complex = 0+0j, zoom: float = 1.0) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        Calculate Mandelbrot set with distance estimation for boundary enhancement.
+        
+        Distance estimation highlights fractal boundaries by calculating the approximate
+        distance to the Mandelbrot set boundary, making self-similar structures more visible.
+        
+        Parameters
+        ----------
+        width, height : int
+            Dimensions of the output array
+        center : complex
+            Center point of the view
+        zoom : float
+            Zoom level (higher = more zoomed in)
+            
+        Returns
+        -------
+        tuple
+            (escape_data, distance_data) - escape counts and distance estimation arrays
+        """
+        # Create coordinate arrays
+        x_min = center.real - 2.0 / zoom
+        x_max = center.real + 2.0 / zoom
+        y_min = center.imag - 2.0 / zoom
+        y_max = center.imag + 2.0 / zoom
+        
+        x = np.linspace(x_min, x_max, width)
+        y = np.linspace(y_min, y_max, height)
+        
+        # Create complex plane
+        X, Y = np.meshgrid(x, y)
+        C = X + 1j * Y
+        
+        # Calculate escape times and distance estimation
+        return self._mandelbrot_distance_estimation(C)
     
     def julia_set(self, width: int, height: int, c: complex,
                   center: complex = 0+0j, zoom: float = 1.0) -> np.ndarray:
@@ -486,6 +524,105 @@ class FractalCalculator:
             return result
         
         return _numba_tricorn(C)
+    
+    @staticmethod
+    def _mandelbrot_distance_estimation(C):
+        """
+        Calculate Mandelbrot set with distance estimation for enhanced boundary visibility.
+        
+        Distance estimation provides approximate distance to the fractal boundary,
+        which helps highlight self-similar structures by emphasizing edges.
+        """
+        if NUMBA_AVAILABLE:
+            return FractalCalculator._mandelbrot_distance_estimation_numba(C)
+        else:
+            return FractalCalculator._mandelbrot_distance_estimation_numpy(C)
+    
+    @staticmethod
+    def _mandelbrot_distance_estimation_numpy(C):
+        """Numpy implementation of Mandelbrot distance estimation."""
+        height, width = C.shape
+        escape_data = np.zeros((height, width), dtype=np.float64)
+        distance_data = np.zeros((height, width), dtype=np.float64)
+        
+        for i in range(height):
+            for j in range(width):
+                c = C[i, j]
+                z = 0.0 + 0.0j
+                dz = 0.0 + 0.0j  # Derivative for distance estimation
+                iteration = 0
+                
+                # Main iteration loop with derivative tracking
+                while iteration < 256 and abs(z) <= 2.0:
+                    # Update derivative: dz = 2*z*dz + 1
+                    dz = 2.0 * z * dz + 1.0
+                    # Update z: z = z^2 + c
+                    z = z * z + c
+                    iteration += 1
+                
+                # Calculate escape data with smooth coloring
+                if iteration < 256:
+                    if abs(z) > 1:
+                        smooth_count = iteration + 1 - np.log2(np.log2(abs(z)))
+                        escape_data[i, j] = smooth_count
+                        
+                        # Distance estimation: d = |z|*ln|z| / |dz|
+                        if abs(dz) > 0:
+                            distance = abs(z) * np.log(abs(z)) / abs(dz)
+                            distance_data[i, j] = distance
+                        else:
+                            distance_data[i, j] = 0.0
+                    else:
+                        escape_data[i, j] = iteration
+                        distance_data[i, j] = 0.0
+                else:
+                    escape_data[i, j] = 256.0
+                    distance_data[i, j] = 0.0  # Inside the set
+        
+        return escape_data, distance_data
+    
+    @staticmethod
+    def _mandelbrot_distance_estimation_numba(C):
+        """Numba-optimized Mandelbrot distance estimation."""
+        @jit(nopython=True, parallel=True)
+        def _numba_distance_estimation(C):
+            height, width = C.shape
+            escape_data = np.zeros((height, width), dtype=np.float64)
+            distance_data = np.zeros((height, width), dtype=np.float64)
+            
+            for i in numba.prange(height):
+                for j in numba.prange(width):
+                    c = C[i, j]
+                    z = 0.0 + 0.0j
+                    dz = 0.0 + 0.0j  # Derivative for distance estimation
+                    iteration = 0
+                    
+                    # Main iteration loop with derivative tracking
+                    while iteration < 256 and abs(z) <= 2.0:
+                        # Update derivative: dz = 2*z*dz + 1
+                        dz = 2.0 * z * dz + 1.0
+                        # Update z: z = z^2 + c
+                        z = z * z + c
+                        iteration += 1
+                    
+                    # Calculate escape data with smooth coloring
+                    if iteration < 256:
+                        smooth_count = iteration + 1 - np.log2(np.log2(abs(z)))
+                        escape_data[i, j] = smooth_count
+                        
+                        # Distance estimation: d = |z|*ln|z| / |dz|
+                        if abs(dz) > 0:
+                            distance = abs(z) * np.log(abs(z)) / abs(dz)
+                            distance_data[i, j] = distance
+                        else:
+                            distance_data[i, j] = 0.0
+                    else:
+                        escape_data[i, j] = iteration
+                        distance_data[i, j] = 0.0
+            
+            return escape_data, distance_data
+        
+        return _numba_distance_estimation(C)
 
 class ZoomPath:
     """
@@ -625,6 +762,254 @@ class PerformanceOptimizer:
         operations_per_second = 1e8  # Approximate for modern CPU
         
         return operations / operations_per_second
+
+class AspectRatioManager:
+    """
+    Manages 16:10 aspect ratio configuration for Manim and fractal viewports.
+    """
+    
+    # Standard 16:10 resolutions
+    RESOLUTIONS_16_10 = {
+        'low': (1280, 800),
+        'medium': (1680, 1050), 
+        'high': (1920, 1200),
+        'ultra': (2560, 1600)
+    }
+    
+    @staticmethod
+    def configure_manim_16_10(quality: str = 'high'):
+        """
+        Configure Manim for 16:10 aspect ratio.
+        
+        Parameters
+        ----------
+        quality : str
+            Resolution quality ('low', 'medium', 'high', 'ultra')
+        """
+        try:
+            from manim import config
+            width, height = AspectRatioManager.RESOLUTIONS_16_10[quality]
+            config.pixel_width = width
+            config.pixel_height = height
+            config.aspect_ratio = width / height
+            print(f"✅ Configured Manim for 16:10 aspect ratio: {width}x{height}")
+        except ImportError:
+            print("⚠️  Manim config not available - aspect ratio will be set per scene")
+        except KeyError:
+            print(f"❌ Unknown quality '{quality}' - using 'high'")
+            AspectRatioManager.configure_manim_16_10('high')
+    
+    @staticmethod
+    def get_fractal_viewport(center: complex, zoom: float, aspect_ratio: float = 1.6) -> Tuple[float, float, float, float]:
+        """
+        Calculate fractal viewport bounds for 16:10 aspect ratio.
+        
+        Parameters
+        ----------
+        center : complex
+            Center point of the view
+        zoom : float
+            Zoom level
+        aspect_ratio : float
+            Aspect ratio (1.6 for 16:10)
+            
+        Returns
+        -------
+        tuple
+            (x_min, x_max, y_min, y_max) viewport bounds
+        """
+        # Calculate viewport size
+        height_range = 2.0 / zoom
+        width_range = height_range * aspect_ratio
+        
+        # Calculate bounds
+        x_min = center.real - width_range / 2
+        x_max = center.real + width_range / 2
+        y_min = center.imag - height_range / 2
+        y_max = center.imag + height_range / 2
+        
+        return x_min, x_max, y_min, y_max
+
+class SmoothZoomEngine:
+    """
+    Advanced smooth zoom engine for continuous fractal navigation.
+    
+    Eliminates jump cuts by generating smooth progressive zoom sequences
+    with configurable zoom rates and adaptive quality.
+    """
+    
+    def __init__(self, fractal_calculator: FractalCalculator):
+        """
+        Initialize smooth zoom engine.
+        
+        Parameters
+        ----------
+        fractal_calculator : FractalCalculator
+            Fractal calculation engine
+        """
+        self.fractal_calculator = fractal_calculator
+        self.aspect_ratio = 1.6  # 16:10 ratio
+    
+    def generate_smooth_zoom_sequence(self, start_center: complex, start_zoom: float,
+                                    end_center: complex, end_zoom: float,
+                                    duration_seconds: float = 3.0, fps: int = 30,
+                                    width: int = 800, height: int = 500) -> List[np.ndarray]:
+        """
+        Generate smooth zoom sequence between two points.
+        
+        Parameters
+        ----------
+        start_center, end_center : complex
+            Start and end center points
+        start_zoom, end_zoom : float
+            Start and end zoom levels
+        duration_seconds : float
+            Duration of zoom sequence
+        fps : int
+            Frames per second
+        width, height : int
+            Image dimensions (should maintain 16:10 ratio)
+            
+        Returns
+        -------
+        List[np.ndarray]
+            List of fractal data arrays for smooth animation
+        """
+        total_frames = int(duration_seconds * fps)
+        frames = []
+        
+        print(f"🎬 Generating {total_frames} frames for smooth zoom")
+        print(f"   From: center={start_center}, zoom={start_zoom:,.0f}x")
+        print(f"   To: center={end_center}, zoom={end_zoom:,.0f}x")
+        
+        for frame_idx in range(total_frames):
+            # Calculate interpolation parameter (0 to 1)
+            t = frame_idx / (total_frames - 1) if total_frames > 1 else 0
+            
+            # Apply easing function for natural zoom feel
+            t_eased = self._smooth_step(t)
+            
+            # Interpolate center point (linear)
+            current_center = start_center + t_eased * (end_center - start_center)
+            
+            # Interpolate zoom level (exponential for natural feel)
+            log_start = np.log(start_zoom)
+            log_end = np.log(end_zoom)
+            current_zoom = np.exp(log_start + t_eased * (log_end - log_start))
+            
+            # Calculate adaptive iterations based on zoom level
+            iterations = self._calculate_adaptive_iterations(current_zoom)
+            
+            # Generate fractal data with 16:10 aspect ratio
+            fractal_data = self._generate_16_10_fractal_frame(
+                current_center, current_zoom, width, height, iterations
+            )
+            
+            frames.append(fractal_data)
+            
+            if frame_idx % 10 == 0:
+                print(f"   🔄 Frame {frame_idx+1}/{total_frames}: zoom={current_zoom:,.0f}x, iterations={iterations}")
+        
+        print("✅ Smooth zoom sequence generated successfully")
+        return frames
+    
+    def generate_multi_location_zoom(self, locations: List[Tuple[complex, float, str]],
+                                   transition_duration: float = 2.0, pause_duration: float = 1.0,
+                                   fps: int = 30, width: int = 800, height: int = 500) -> List[Tuple[np.ndarray, str]]:
+        """
+        Generate smooth zoom sequence through multiple locations.
+        
+        Parameters
+        ----------
+        locations : List[Tuple[complex, float, str]]
+            List of (center, zoom, description) tuples
+        transition_duration : float
+            Duration of transition between locations
+        pause_duration : float
+            Duration to pause at each location
+        fps : int
+            Frames per second
+        width, height : int
+            Image dimensions
+            
+        Returns
+        -------
+        List[Tuple[np.ndarray, str]]
+            List of (fractal_data, description) tuples
+        """
+        all_frames = []
+        
+        print(f"🌟 Generating multi-location smooth zoom through {len(locations)} locations")
+        
+        for i in range(len(locations)):
+            center, zoom, description = locations[i]
+            
+            print(f"\n📍 Location {i+1}/{len(locations)}: {description}")
+            print(f"   Center: {center}, Zoom: {zoom:,.0f}x")
+            
+            # Generate frames for current location (pause frames)
+            pause_frames = int(pause_duration * fps)
+            iterations = self._calculate_adaptive_iterations(zoom)
+            
+            for _ in range(pause_frames):
+                fractal_data = self._generate_16_10_fractal_frame(
+                    center, zoom, width, height, iterations
+                )
+                all_frames.append((fractal_data, description))
+            
+            # Generate transition to next location (if not last)
+            if i < len(locations) - 1:
+                next_center, next_zoom, _ = locations[i + 1]
+                
+                transition_frames = self.generate_smooth_zoom_sequence(
+                    center, zoom, next_center, next_zoom,
+                    duration_seconds=transition_duration, fps=fps,
+                    width=width, height=height
+                )
+                
+                # Add transition frames (skip first frame to avoid duplication)
+                for frame_data in transition_frames[1:]:
+                    all_frames.append((frame_data, f"Zooming to {locations[i+1][2]}"))
+        
+        print(f"\n✅ Generated {len(all_frames)} total frames for multi-location journey")
+        return all_frames
+    
+    def _smooth_step(self, t: float) -> float:
+        """Apply smooth step function for natural easing."""
+        # Smooth step function: 3t² - 2t³
+        return 3 * t * t - 2 * t * t * t
+    
+    def _calculate_adaptive_iterations(self, zoom: float) -> int:
+        """Calculate optimal iteration count based on zoom level."""
+        base_iterations = 256
+        zoom_factor = max(1.0, np.log10(zoom))  
+        adaptive_iterations = int(base_iterations + zoom_factor * 100)
+        return min(adaptive_iterations, 2048)  # Cap at 2048 for performance
+    
+    def _generate_16_10_fractal_frame(self, center: complex, zoom: float, 
+                                    width: int, height: int, iterations: int) -> np.ndarray:
+        """Generate single fractal frame with 16:10 aspect ratio."""
+        # Use AspectRatioManager for proper viewport
+        x_min, x_max, y_min, y_max = AspectRatioManager.get_fractal_viewport(
+            center, zoom, aspect_ratio=self.aspect_ratio
+        )
+        
+        # Generate coordinate arrays
+        x = np.linspace(x_min, x_max, width)
+        y = np.linspace(y_min, y_max, height)
+        X, Y = np.meshgrid(x, y)
+        C = X + 1j * Y
+        
+        # Calculate fractal with adaptive iterations
+        original_iterations = self.fractal_calculator.max_iterations
+        self.fractal_calculator.max_iterations = iterations
+        
+        fractal_data = self.fractal_calculator._mandelbrot_escape_count(C)
+        
+        # Restore original iterations
+        self.fractal_calculator.max_iterations = original_iterations
+        
+        return fractal_data
 
 def create_fractal_calculator(fractal_type: str = 'mandelbrot', **kwargs) -> FractalCalculator:
     """

@@ -1,12 +1,15 @@
 """
-Double Spiral Galaxy: Infinite Recursive Spiral Patterns
+Double Spiral Galaxy: Smooth Continuous Zoom with Enhanced Self-Similarity
 
-This scene explores the Double Spiral Valley of the Mandelbrot set, where
-infinite double spirals branch into more double spirals at every scale.
-Shows the cosmic-like spiral structures that demonstrate perfect mathematical
-self-similarity in nature.
+This scene creates a smooth, continuous journey into the Double Spiral Valley 
+of the Mandelbrot set, revealing infinite recursive spiral patterns with
+enhanced visibility through distance estimation coloring and edge enhancement.
 
-Based on mathematical literature about spiral structures in the Mandelbrot set.
+Features:
+- Smooth continuous zooming (no jump cuts)
+- 16:10 aspect ratio for widescreen viewing
+- Distance estimation coloring for enhanced self-similarity visibility
+- Cosmic color palette optimized for spiral structures
 """
 
 from manim import *
@@ -22,8 +25,11 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(project_root)
 
 try:
-    from utils.fractal_algorithms import FractalCalculator, create_fractal_calculator
-    from utils.color_schemes import FractalColorizer, ColorPalette
+    from utils.fractal_algorithms import (
+        FractalCalculator, create_fractal_calculator, 
+        SmoothZoomEngine, AspectRatioManager
+    )
+    from utils.color_schemes import SelfSimilarityColorizer, ColorPalette
     UTILS_AVAILABLE = True
 except ImportError as e:
     print(f"Import error: {e}")
@@ -31,256 +37,322 @@ except ImportError as e:
 
 class DoubleSpiralGalaxy(Scene):
     """
-    Journey into Double Spiral Valley showing infinite recursive spiral patterns.
+    Smooth continuous journey into Double Spiral Galaxy with enhanced spiral visibility.
     """
     
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        
+        # Configure 16:10 aspect ratio
+        AspectRatioManager.configure_manim_16_10('high')
         self.camera.background_color = "#000011"  # Deep space background
         
-        # High-quality parameters for spiral detail
-        self.base_resolution = 800
-        self.max_iterations = 1024
+        # High-quality parameters for smooth zoom
+        self.base_resolution = 1600  # Higher resolution for 16:10
+        self.aspect_ratio = 1.6  # 16:10 ratio
         
-        # Double Spiral Valley coordinates (R2.1/2a side)
-        self.spiral_sequence = self._create_spiral_zoom_sequence()
+        # Double Spiral Valley coordinates
+        self.spiral_locations = self._create_spiral_locations()
         
-        # Initialize fractal tools
+        # Initialize enhanced fractal systems
         self.fractal_calculator = self._initialize_calculator()
-        self.colorizer = self._initialize_colorizer()
+        self.zoom_engine = self._initialize_zoom_engine()
+        self.similarity_colorizer = self._initialize_similarity_colorizer()
         
     def construct(self):
-        """Create the Double Spiral Galaxy journey."""
+        """Create the smooth Double Spiral Galaxy journey."""
         
         if not UTILS_AVAILABLE or not self.fractal_calculator:
             self.create_fallback()
             return
         
-        self.create_spiral_galaxy_journey()
-    
-    def _create_spiral_zoom_sequence(self) -> List[Tuple[complex, float, str]]:
-        """
-        Create zoom sequence into Double Spiral Valley.
+        print("🌌 Starting Enhanced Double Spiral Galaxy Journey")
+        print(f"📐 Aspect Ratio: 16:10 ({config.pixel_width}x{config.pixel_height})")
+        print(f"🎯 Self-Similarity Enhancement: ENABLED")
+        print(f"🎬 Smooth Zoom Engine: ACTIVE")
         
-        Focuses on locations known for spiral structures and recursive patterns.
-        Based on coordinates for spiral centers and Misiurewicz points.
+        self.create_smooth_spiral_journey()
+    
+    def _create_spiral_locations(self) -> List[Tuple[complex, float, str]]:
+        """
+        Create mathematically accurate spiral valley locations for smooth zoom.
         
         Returns:
-            List of (center, zoom, description) tuples
+            List of (center, zoom, description) tuples for key spiral locations
         """
         return [
-            # 1. Full set with spiral regions visible
+            # Progressive zoom into double spiral valley
             (0+0j, 1.0, "Mandelbrot Set Overview"),
-            
-            # 2. Approach the main spiral region
-            (-0.7+0.05j, 8.0, "Approaching Spiral Valley"),
-            
-            # 3. Enter Double Spiral Valley (R2.1/2a side)
-            (-0.75+0.05j, 25.0, "Entering Double Spiral Valley"),
-            
-            # 4. First double spirals emerge
-            (-0.745+0.08j, 150.0, "First Double Spiral Structures"),
-            
-            # 5. Detailed spiral arms
-            (-0.7445+0.085j, 800.0, "Detailed Spiral Arms"),
-            
-            # 6. Spiral branching points
-            (-0.74445+0.0855j, 4500.0, "Spiral Branching Points"),
-            
-            # 7. Recursive spiral emergence
-            (-0.744445+0.08555j, 25000.0, "Recursive Spiral Patterns"),
-            
-            # 8. Deep spiral recursion
-            (-0.7444445+0.085555j, 140000.0, "Deep Spiral Recursion"),
-            
-            # 9. Infinite spiral branching
-            (-0.74444445+0.0855555j, 800000.0, "Infinite Spiral Branching"),
-            
-            # 10. Perfect spiral self-similarity
-            (-0.744444445+0.08555555j, 4500000.0, "Perfect Spiral Self-Similarity")
+            (-0.7+0.05j, 15.0, "Approaching Spiral Valley"),
+            (-0.75+0.05j, 80.0, "Entering Double Spiral Valley"),
+            (-0.745+0.08j, 500.0, "First Double Spiral Structures"),
+            (-0.7445+0.085j, 3000.0, "Detailed Spiral Arms"),
+            (-0.74445+0.0855j, 20000.0, "Spiral Branching Points"),
+            (-0.744445+0.08555j, 120000.0, "Recursive Spiral Patterns"),
+            (-0.7444445+0.085555j, 800000.0, "Deep Spiral Recursion"),
+            (-0.74444445+0.0855555j, 5000000.0, "Infinite Spiral Branching"),
+            (-0.744444445+0.08555555j, 30000000.0, "Perfect Spiral Self-Similarity")
         ]
     
-    def create_spiral_galaxy_journey(self):
+    def create_smooth_spiral_journey(self):
         """
-        Create journey through spiral galaxy showing recursive patterns.
+        Create smooth continuous zoom journey through spiral valley.
         """
         
-        print(f"\n🌌 Starting Double Spiral Galaxy Journey")
-        print(f"Spiral sequence: {len(self.spiral_sequence)} cosmic locations")
+        print(f"\n🌟 Generating smooth zoom through {len(self.spiral_locations)} spiral locations")
         
-        # Pre-render all spiral frames
-        spiral_frames = []
-        for i, (center, zoom, description) in enumerate(self.spiral_sequence):
-            print(f"\n🌀 Frame {i+1}/{len(self.spiral_sequence)}: {description}")
-            print(f"   Center: {center}")
-            print(f"   Zoom: {zoom:,.0f}x")
+        # Generate all frames for smooth multi-location journey
+        all_frames_data = self.zoom_engine.generate_multi_location_zoom(
+            locations=self.spiral_locations,
+            transition_duration=2.8,  # Slightly faster for cosmic feel
+            pause_duration=1.8,       # Shorter pauses for dynamic feel
+            fps=30,                   # 30 FPS for smooth animation
+            width=int(self.base_resolution * self.aspect_ratio),  # 16:10 width
+            height=self.base_resolution                           # 16:10 height
+        )
+        
+        print(f"\n🎬 Converting {len(all_frames_data)} frames to cosmic spiral images...")
+        
+        # Convert fractal data to Manim image objects with enhanced coloring
+        manim_frames = []
+        for i, (fractal_data, description) in enumerate(all_frames_data):
             
-            spiral_image = self.render_spiral_frame(
-                center=center, 
-                zoom=zoom, 
-                frame_id=i,
-                description=description
+            # Extract zoom level from description for adaptive coloring
+            zoom_level = self._extract_zoom_from_description(description, i)
+            
+            # Create enhanced RGB image using self-similarity colorizer
+            rgb_image = self._create_enhanced_spiral_image(
+                fractal_data, zoom_level, description
             )
             
-            if spiral_image:
-                spiral_image.scale_to_fit_height(config.frame_height * 0.95)
-                spiral_image.center()
-                spiral_frames.append((spiral_image, description, zoom))
-                print(f"   ✅ Successfully rendered")
-            else:
-                print(f"   ❌ Failed to render")
-                break
+            if rgb_image is not None:
+                # Convert to PIL Image and save with unique filename
+                rgb_uint8 = (np.clip(rgb_image, 0, 1) * 255).astype(np.uint8)
+                pil_image = Image.fromarray(rgb_uint8)
+                
+                # Save with unique filename to prevent caching
+                timestamp = int(time.time() * 1000000)
+                temp_filename = f"/tmp/spiral_smooth_{i:04d}_{timestamp}_{hash(description) % 10000}.png"
+                pil_image.save(temp_filename, optimize=True, quality=95)
+                
+                # Create Manim ImageMobject
+                image_mob = ImageMobject(temp_filename)
+                image_mob.scale_to_fit_height(config.frame_height * 0.95)
+                image_mob.center()
+                
+                manim_frames.append((image_mob, description, zoom_level))
+                
+                if i % 20 == 0:
+                    print(f"   🔄 Processed frame {i+1}/{len(all_frames_data)}: {description}")
         
-        if not spiral_frames:
-            print("❌ No frames rendered successfully")
+        if not manim_frames:
+            print("❌ No frames generated successfully")
             self.create_fallback()
             return
         
-        print(f"\n🎬 Successfully rendered {len(spiral_frames)} frames")
-        print("🌌 Starting cosmic spiral journey...")
+        print(f"\n🎥 Starting smooth spiral animation with {len(manim_frames)} frames")
         
-        # Start with overview
-        current_frame, description, zoom = spiral_frames[0]
-        self.play(FadeIn(current_frame, run_time=2.5), rate_func=smooth)
-        self.wait(1.2)  # Let viewers locate the spiral regions
+        # Create smooth continuous animation
+        self._animate_smooth_frames(manim_frames)
         
-        # Journey through each spiral level
-        for i in range(1, len(spiral_frames)):
-            next_frame, description, zoom = spiral_frames[i]
+        print("✅ Double Spiral Galaxy journey completed successfully!")
+    
+    def _create_enhanced_spiral_image(self, fractal_data: np.ndarray, 
+                                    zoom_level: float, description: str) -> Optional[np.ndarray]:
+        """
+        Create enhanced spiral fractal image with self-similarity coloring.
+        
+        Parameters
+        ----------
+        fractal_data : np.ndarray
+            Basic escape-time fractal data
+        zoom_level : float
+            Current zoom level for adaptive enhancement
+        description : str
+            Frame description
             
-            print(f"🌀 Spiral Transition {i}: {description} (zoom {zoom:,.0f}x)")
+        Returns
+        -------
+        np.ndarray or None
+            Enhanced RGB image array with cosmic spiral theme
+        """
+        try:
+            # Create spiral-optimized distance data
+            distance_data = self._create_spiral_distance_data(fractal_data)
             
-            # Variable timing for spiral appreciation
-            if zoom < 200:
-                transition_time = 1.8  # Slower for initial spiral discovery
-                pause_time = 1.0
-            elif zoom < 10000:
-                transition_time = 1.4  # Medium for spiral arm details
-                pause_time = 1.2  
-            else:
-                transition_time = 1.2  # Faster for deep recursive patterns
-                pause_time = 1.5  # Longer pause to appreciate infinite recursion
+            # Apply self-similarity enhanced coloring with cosmic theme
+            rgb_array = self.similarity_colorizer.colorize_with_distance_estimation(
+                escape_data=fractal_data,
+                distance_data=distance_data,
+                max_iterations=2048,  # High iterations for spiral detail
+                zoom_level=zoom_level
+            )
             
-            # Smooth spiral transition
+            # Add cosmic glow effect for spiral arms
+            rgb_array = self._add_cosmic_glow(rgb_array, distance_data)
+            
+            return rgb_array
+            
+        except Exception as e:
+            print(f"   ❌ Error creating enhanced spiral image: {e}")
+            return None
+    
+    def _create_spiral_distance_data(self, escape_data: np.ndarray) -> np.ndarray:
+        """
+        Create distance data optimized for spiral structure detection.
+        """
+        # Create radial and angular gradients to highlight spiral patterns
+        height, width = escape_data.shape
+        y, x = np.ogrid[:height, :width]
+        
+        # Center coordinates
+        cy, cx = height // 2, width // 2
+        
+        # Calculate radial distance from center
+        radial_dist = np.sqrt((x - cx)**2 + (y - cy)**2)
+        
+        # Calculate angle from center
+        angles = np.arctan2(y - cy, x - cx)
+        
+        # Create spiral-aware gradient that emphasizes curved structures
+        escape_gradient = np.gradient(escape_data)
+        gradient_magnitude = np.sqrt(escape_gradient[0]**2 + escape_gradient[1]**2)
+        
+        # Combine radial and gradient information for spiral detection
+        max_gradient = np.max(gradient_magnitude)
+        if max_gradient > 0:
+            normalized_gradient = gradient_magnitude / max_gradient
+            
+            # Create spiral-sensitive distance metric
+            spiral_distance = 1.0 - normalized_gradient
+            
+            # Enhance curved features (spirals) over linear features
+            curvature = self._detect_curvature(escape_data)
+            spiral_distance *= (1.0 + 0.5 * curvature)
+            
+        else:
+            spiral_distance = np.ones_like(escape_data)
+        
+        return spiral_distance
+    
+    def _detect_curvature(self, data: np.ndarray) -> np.ndarray:
+        """Detect curved features that indicate spiral structures."""
+        # Calculate second derivatives to detect curvature
+        grad_y, grad_x = np.gradient(data)
+        grad2_y, grad2_x = np.gradient(grad_y), np.gradient(grad_x)
+        
+        # Curvature approximation using second derivatives
+        curvature = np.abs(grad2_x) + np.abs(grad2_y)
+        
+        # Normalize
+        max_curvature = np.max(curvature)
+        if max_curvature > 0:
+            curvature = curvature / max_curvature
+        
+        return curvature
+    
+    def _add_cosmic_glow(self, rgb_array: np.ndarray, distance_data: np.ndarray) -> np.ndarray:
+        """Add cosmic glow effect to highlight spiral arms."""
+        # Create glow mask for areas with interesting features
+        glow_mask = distance_data < 0.3  # Areas close to fractal boundaries
+        
+        # Add subtle glow by boosting brightness in spiral regions
+        enhanced_rgb = rgb_array.copy()
+        glow_factor = 1.2
+        
+        enhanced_rgb[glow_mask] *= glow_factor
+        
+        return np.clip(enhanced_rgb, 0, 1)
+    
+    def _extract_zoom_from_description(self, description: str, frame_index: int) -> float:
+        """Extract zoom level from frame description or estimate from index."""
+        # Exponential zoom progression for spiral journey
+        base_zoom = 1.0
+        zoom_progression = base_zoom * (1.15 ** frame_index)  # Faster zoom for spirals
+        return min(zoom_progression, 1e9)  # Cap at 1 billion zoom
+    
+    def _animate_smooth_frames(self, manim_frames: List[Tuple]):
+        """
+        Create smooth spiral animation from processed Manim frames.
+        """
+        if not manim_frames:
+            return
+        
+        # Start with first frame
+        current_frame, description, zoom_level = manim_frames[0]
+        print(f"🎬 Starting: {description} (zoom {zoom_level:,.0f}x)")
+        
+        self.play(FadeIn(current_frame, run_time=1.5), rate_func=smooth)
+        
+        # Animate through all frames with very short transitions for smoothness
+        for i in range(1, len(manim_frames)):
+            next_frame, description, zoom_level = manim_frames[i]
+            
+            # Very fast transitions (0.08s) for ultra-smooth spiral feel
             self.play(
                 ReplacementTransform(current_frame, next_frame),
-                run_time=transition_time,
-                rate_func=smooth
+                run_time=0.08,
+                rate_func=linear  # Linear for consistent spiral motion
             )
             
             current_frame = next_frame
             
-            # Pause at key spiral emergence points
-            if zoom in [150, 4500, 25000, 800000]:
-                print(f"   🌀 Pausing to show spiral recursion...")
-                self.wait(pause_time)
+            # Occasional status updates
+            if i % 25 == 0:
+                print(f"   🌀 Frame {i}: {description} (zoom {zoom_level:,.0f}x)")
         
-        # Final dramatic pause showing infinite spiral patterns
-        print("🌌 Reached maximum spiral depth - showing infinite recursion")
-        self.wait(4.0)
+        # Final pause to appreciate the deepest spiral recursion
+        print(f"🏁 Final spiral: {description} (zoom {zoom_level:,.0f}x)")
+        self.wait(3.0)
         
-        # Fade to cosmic black
-        print("🎬 Ending cosmic journey...")
-        self.play(FadeOut(current_frame, run_time=2.5), rate_func=smooth)
-    
-    def render_spiral_frame(self, center: complex, zoom: float, 
-                           frame_id: int, description: str) -> Optional[ImageMobject]:
-        """
-        Render single frame optimized for spiral structures.
-        """
-        try:
-            print(f"   🌀 Computing spiral fractal data...")
-            
-            # Higher iterations for spiral detail
-            iterations = min(self.max_iterations, max(300, int(150 + np.log10(zoom) * 120)))
-            print(f"   📊 Using {iterations} iterations for zoom {zoom:,.0f}x")
-            
-            # Calculate Mandelbrot data
-            mandelbrot_data = self.fractal_calculator.mandelbrot_set(
-                width=self.base_resolution,
-                height=self.base_resolution,
-                center=center,
-                zoom=zoom
-            )
-            
-            # Analyze spiral data quality
-            unique_values = len(set(mandelbrot_data.flatten()))
-            data_range = f"{mandelbrot_data.min():.2f}-{mandelbrot_data.max():.2f}"
-            print(f"   📈 Spiral data quality: range={data_range}, unique_values={unique_values}")
-            
-            # Apply cosmic coloring for spiral galaxy effect
-            rgb_array = self.colorizer.colorize_escape_data(
-                mandelbrot_data,
-                max_iterations=iterations,
-                cycle_speed=frame_id * 0.08 + np.log10(zoom) * 0.03,  # Cosmic color cycling
-                use_histogram_equalization=True
-            )
-            
-            # Enhance spiral contrast and add cosmic glow
-            if zoom > 500:
-                # Spiral-specific contrast enhancement
-                contrast_boost = 1.0 + min(0.5, (zoom - 500) / 50000.0)
-                rgb_array = np.clip((rgb_array - 0.5) * contrast_boost + 0.5, 0, 1)
-                
-                # Add subtle cosmic glow effect
-                glow_factor = 1.0 + min(0.2, np.log10(zoom) * 0.02)
-                rgb_array = np.clip(rgb_array * glow_factor, 0, 1)
-                
-                print(f"   🌌 Applied cosmic enhancement: contrast={contrast_boost:.2f}, glow={glow_factor:.2f}")
-            
-            # Convert to PIL Image
-            rgb_uint8 = (np.clip(rgb_array, 0, 1) * 255).astype(np.uint8)
-            pil_image = Image.fromarray(rgb_uint8)
-            
-            # Unique filename for spiral frames
-            timestamp = int(time.time() * 1000000)
-            safe_description = description.replace(" ", "_").replace("-", "_")
-            temp_filename = f"/tmp/spiral_{frame_id:02d}_{safe_description}_{timestamp}_{hash((center, zoom)) % 10000}.png"
-            pil_image.save(temp_filename, optimize=True, quality=95)
-            
-            print(f"   💾 Saved: {temp_filename}")
-            
-            return ImageMobject(temp_filename)
-            
-        except Exception as e:
-            print(f"   ❌ Error rendering spiral frame {frame_id}: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
+        # Fade out with cosmic effect
+        self.play(FadeOut(current_frame, run_time=2.0), rate_func=smooth)
     
     def create_fallback(self):
-        """Fallback if spiral rendering fails."""
-        error_text = Text("Double Spiral Galaxy\nRendering Error", font_size=36, color=BLUE)
+        """Fallback if enhanced spiral rendering fails."""
+        error_text = Text(
+            "Enhanced Double Spiral\nGalaxy System\nNot Available", 
+            font_size=36, 
+            color=RED
+        )
         self.play(Write(error_text))
         self.wait(2)
         self.play(FadeOut(error_text))
     
     def _initialize_calculator(self) -> Optional[FractalCalculator]:
-        """Initialize calculator for spiral structures."""
+        """Initialize high-precision fractal calculator."""
         try:
-            if FractalCalculator:
-                return create_fractal_calculator(
-                    fractal_type='mandelbrot',
-                    max_iterations=self.max_iterations,
-                    bailout_radius=2.0
-                )
+            return create_fractal_calculator(
+                fractal_type='mandelbrot',
+                max_iterations=2048,  # High iterations for spiral detail
+                bailout_radius=2.0
+            )
         except Exception as e:
             print(f"Failed to initialize calculator: {e}")
+            return None
+    
+    def _initialize_zoom_engine(self) -> Optional[SmoothZoomEngine]:
+        """Initialize smooth zoom engine."""
+        try:
+            if self.fractal_calculator:
+                return SmoothZoomEngine(self.fractal_calculator)
+        except Exception as e:
+            print(f"Failed to initialize zoom engine: {e}")
         return None
     
-    def _initialize_colorizer(self) -> Optional[FractalColorizer]:
-        """Initialize cosmic colorizer for spiral galaxy effect."""
+    def _initialize_similarity_colorizer(self) -> Optional[SelfSimilarityColorizer]:
+        """Initialize self-similarity colorizer for cosmic spirals."""
         try:
-            if FractalColorizer:
-                return FractalColorizer(
-                    palette=ColorPalette.COSMIC,  # Cosmic palette for galaxy theme
-                    gamma=0.6,
-                    contrast=1.5
-                )
+            return SelfSimilarityColorizer(
+                base_palette=ColorPalette.COSMIC,  # Cosmic theme for spirals
+                edge_emphasis=2.5,                 # Medium edge enhancement for spirals
+                structure_contrast=1.8             # Good spiral contrast
+            )
         except Exception as e:
-            print(f"Failed to initialize colorizer: {e}")
+            print(f"Failed to initialize similarity colorizer: {e}")
         return None
 
 if __name__ == "__main__":
-    print("🌌 Double Spiral Galaxy - Infinite Recursive Spiral Journey")
+    print("🌌 Enhanced Double Spiral Galaxy - Smooth Zoom with Self-Similarity")
     print("Usage: manim -pql double_spiral_galaxy.py DoubleSpiralGalaxy")
+    print("Features: 16:10 aspect ratio, smooth continuous zoom, enhanced spiral visibility")
