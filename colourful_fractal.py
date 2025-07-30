@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def generate_julia(width, height, max_iter, c):
-    # Define the bounds for the Julia set (adjusted for full view with spirals)
-    xmin, xmax = -1.5, 1.5
-    ymin, ymax = -1.5 * (height / width), 1.5 * (height / width)  # Maintain aspect ratio
+    # Define the bounds for the Julia set (adjusted for full view with spirals, zoomed out slightly to cover more)
+    xmin, xmax = -1.8, 1.8
+    ymin, ymax = -1.8 * (height / width), 1.8 * (height / width)  # Maintain aspect ratio, zoomed out
     
     # Create the grid of complex numbers (z starts here)
     real = np.linspace(xmin, xmax, width)
@@ -18,7 +18,7 @@ def generate_julia(width, height, max_iter, c):
     # Mask for points still iterating
     mask = np.ones(z.shape, dtype=bool)
     
-    # Escape radius for smoother coloring (larger than 2 to avoid overflow and improve smoothing)
+    # Escape radius for smoother coloring
     escape_r = 100.0
     
     for i in range(max_iter):
@@ -26,7 +26,7 @@ def generate_julia(width, height, max_iter, c):
         newly_diverged = (np.abs(z[mask]) > escape_r)
         if newly_diverged.any():
             abs_z = np.abs(z[mask][newly_diverged])
-            # Smooth escape time formula
+            # Smooth escape time formula for shades
             nu = i + 1 - np.log(np.log(abs_z) / np.log(escape_r)) / np.log(2)
             divergence[mask][newly_diverged] = nu
             mask[mask] &= ~newly_diverged  # Update mask
@@ -44,18 +44,18 @@ width = 1920
 height = 1200
 max_iter = 2000  # High iteration count for detail
 
-# Choose a c value that produces prominent spiral patterns (Siegel disk with spirals)
+# Choose a c value that produces prominent spiral patterns
 c = complex(-0.726895347438, 0.188887129043)
 
 # Compute the fractal
 fractal = generate_julia(width, height, max_iter, c)
 
-# Save the image with a colorful colormap (plasma for vibrant gradients)
-plt.imsave('colorful_spiral_fractal.png', fractal, cmap='plasma')
+# Save the image in greyscale with smooth shades of grey
+plt.imsave('greyscale_spiral_fractal.png', fractal, cmap='gray')
 
 # Optionally display the image (comment out if not needed)
-# plt.imshow(fractal, cmap='plasma', origin='lower')
+# plt.imshow(fractal, cmap='gray', origin='lower')
 # plt.axis('off')
 # plt.show()
 
-print("Colorful spiral fractal image saved as 'colorful_spiral_fractal.png'")
+print("Greyscale spiral fractal image saved as 'greyscale_spiral_fractal.png'")
