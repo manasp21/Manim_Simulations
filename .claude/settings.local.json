@@ -24,7 +24,12 @@
       "Bash(mv:*)",
       "Bash(git rm:*)",
       "Bash(true)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(timeout 30s manim:*)",
+      "Bash(timeout 25s manim:*)",
+      "Bash(timeout 180s manim:*)",
+      "WebFetch(domain:www.mrob.com)",
+      "WebFetch(domain:math.stackexchange.com)"
     ],
     "deny": []
   }
