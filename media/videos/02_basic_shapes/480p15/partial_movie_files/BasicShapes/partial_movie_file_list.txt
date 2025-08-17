@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_basic_shapes/480p15/partial_movie_files/BasicShapes/1185818338_4178669952_223132457.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_basic_shapes/480p15/partial_movie_files/BasicShapes/624642324_3264929833_2872951237.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_basic_shapes/480p15/partial_movie_files/BasicShapes/624642324_1179107968_3430313936.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_basic_shapes/480p15/partial_movie_files/BasicShapes/624642324_3135052539_2901505634.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_basic_shapes/480p15/partial_movie_files/BasicShapes/624642324_3046172025_1930969474.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/02_basic_shapes/480p15/partial_movie_files/BasicShapes/624642324_2408024828_4093778076.mp4'

@@ -1,0 +1,2 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/Mandelbrot Simulations/media/videos/mandelbrot_white_black/480p15/partial_movie_files/TestMandelbrotWhiteOnBlack/931832650_1157195461_3861055928.mp4'

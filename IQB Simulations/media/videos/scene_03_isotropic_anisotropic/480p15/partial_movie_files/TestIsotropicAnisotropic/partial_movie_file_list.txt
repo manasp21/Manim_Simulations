@@ -1,0 +1,13 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/3259105219_842377422_223132457.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_2664531565_2218338476.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_1218579536_3418124915.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_1179264593_3458358517.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_1464625686_2248414009.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_1565264762_554207670.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_726336913_691969773.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_721324385_2403001441.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_3294549351_692381347.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_306833819_58204131.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_1661599485_2892177133.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/IQB Simulations/media/videos/scene_03_isotropic_anisotropic/480p15/partial_movie_files/TestIsotropicAnisotropic/4110672117_1218579536_2620364527.mp4'

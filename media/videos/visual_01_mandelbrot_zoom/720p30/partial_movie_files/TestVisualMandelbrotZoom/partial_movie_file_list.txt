@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_01_mandelbrot_zoom/720p30/partial_movie_files/TestVisualMandelbrotZoom/3230874340_2423091890_223132457.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_01_mandelbrot_zoom/720p30/partial_movie_files/TestVisualMandelbrotZoom/2451598138_3201849554_1418721893.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_01_mandelbrot_zoom/720p30/partial_movie_files/TestVisualMandelbrotZoom/2451598138_770223074_302232672.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_01_mandelbrot_zoom/720p30/partial_movie_files/TestVisualMandelbrotZoom/2451598138_3201849554_2466347169.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_01_mandelbrot_zoom/720p30/partial_movie_files/TestVisualMandelbrotZoom/2451598138_123180261_4059819209.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_01_mandelbrot_zoom/720p30/partial_movie_files/TestVisualMandelbrotZoom/2451598138_3201849554_4140263091.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_01_mandelbrot_zoom/720p30/partial_movie_files/TestVisualMandelbrotZoom/2451598138_2982229698_289057400.mp4'

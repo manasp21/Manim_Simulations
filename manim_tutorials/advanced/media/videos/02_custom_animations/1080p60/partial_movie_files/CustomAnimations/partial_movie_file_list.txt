@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/advanced/media/videos/02_custom_animations/1080p60/partial_movie_files/CustomAnimations/3977891868_699977195_809182053.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/advanced/media/videos/02_custom_animations/1080p60/partial_movie_files/CustomAnimations/2852726489_1839128356_3692824735.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/advanced/media/videos/02_custom_animations/1080p60/partial_movie_files/CustomAnimations/2852726489_4021255048_1136447151.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/advanced/media/videos/02_custom_animations/1080p60/partial_movie_files/CustomAnimations/2852726489_2408024828_3512604349.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/advanced/media/videos/02_custom_animations/1080p60/partial_movie_files/CustomAnimations/2852726489_922527594_1296100643.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/advanced/media/videos/02_custom_animations/1080p60/partial_movie_files/CustomAnimations/2852726489_3007500652_1296100643.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/manim_tutorials/advanced/media/videos/02_custom_animations/1080p60/partial_movie_files/CustomAnimations/2852726489_2408024828_2402063912.mp4'

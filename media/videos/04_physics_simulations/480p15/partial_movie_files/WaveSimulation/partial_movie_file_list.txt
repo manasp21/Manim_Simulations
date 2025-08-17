@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/04_physics_simulations/480p15/partial_movie_files/WaveSimulation/1185818338_811075620_223132457.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/04_physics_simulations/480p15/partial_movie_files/WaveSimulation/624642324_2408024828_3023704395.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/04_physics_simulations/480p15/partial_movie_files/WaveSimulation/624642324_2428774157_4290418722.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/04_physics_simulations/480p15/partial_movie_files/WaveSimulation/624642324_1839128356_2891597162.mp4'

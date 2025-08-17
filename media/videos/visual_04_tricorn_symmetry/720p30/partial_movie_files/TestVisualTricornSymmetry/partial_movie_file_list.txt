@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_04_tricorn_symmetry/720p30/partial_movie_files/TestVisualTricornSymmetry/3230874340_2423091890_223132457.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_04_tricorn_symmetry/720p30/partial_movie_files/TestVisualTricornSymmetry/2451598138_4090605074_1418721893.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_04_tricorn_symmetry/720p30/partial_movie_files/TestVisualTricornSymmetry/2451598138_770223074_302232672.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_04_tricorn_symmetry/720p30/partial_movie_files/TestVisualTricornSymmetry/2451598138_4090605074_2466347169.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_04_tricorn_symmetry/720p30/partial_movie_files/TestVisualTricornSymmetry/2451598138_770223074_4059819209.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_04_tricorn_symmetry/720p30/partial_movie_files/TestVisualTricornSymmetry/2451598138_4090605074_4140263091.mp4'
+file 'file:/Users/themanaspandey/Documents/GitHub/Manim_Simulations/media/videos/visual_04_tricorn_symmetry/720p30/partial_movie_files/TestVisualTricornSymmetry/2451598138_207085669_289057400.mp4'
